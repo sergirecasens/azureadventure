@@ -1,10 +1,10 @@
 {
   "name": "usuario",
   "version": "1.0.0",
-  "description": "per si necessito fer proves durant l'examen del 26/3/2021",
+  "description": "desc",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Eyyy\" "
   },
   "author": "",
   "license": "ISC"
