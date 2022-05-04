@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="../style.css">
+	<title>Ranking</title>
+</head>
+
+<body class="bg">
+	<div id="app">
+		<b class="textcentrat">BEST SCORES</b>
+		
+		<div class="textranking" v-for="item in items" :key="item.id">
+				<b class="textranking">{{item.name}}</b>
+				<p class="textranking">Score: {{item.info.score}}</p>
+				<p class="textranking">Time: {{100 - item.info.time}}</p>
+		</div>
+		
+		<div class="contingutcentrat">
+			<button class="botocentrat" v-on:click="menu">Menu</button>
+		</div>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="../script/ranking.js"></script>
+</html>

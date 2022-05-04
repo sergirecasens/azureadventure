@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="../style.css">
+	<title>Load</title>
+</head>
+
+<body class="bg">
+	<div id="app">
+	<b class="textcentrat">LIST OF SAVE FILES</b>
+	
+	<div class="contingutcentrat" v-for="item in items" :key="item.id">
+		<button class="leftbutton" v-on:click="load(item.id)">Load {{item.id}}</button>
+		- {{item.name}}
+		<button class="rightbutton" v-on:click="remove(item.id)">Delete</button>
+	</div>
+	
+	<div class="contingutcentrat">
+		<button class="leftbuttonred" v-on:click="remove_all">DELETE ALL</button>
+		<button class="rightbutton" v-on:click="menu">Menu</button>
+	</div>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="../script/load.js"></script>
+</html>

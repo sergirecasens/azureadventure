@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="../style.css">
+	<title>Joc</title>
+</head>
+
+<body class="bg">
+	<div id="app">
+		<p class="textcentrat">{{id_partida}}: {{nom_usuari}} is playing</p>
+		<div id="joc">
+			
+		</div>
+		<div class="contingutcentrat">
+			<button class="leftbutton" v-on:click="save">Save and quit</button>
+			<button class="rightbutton" v-on:click="menu">Quit</button>
+		</div>
+	</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="../script/stargame.js"></script>
+<script src="../script/game.js"></script>
+</html>
