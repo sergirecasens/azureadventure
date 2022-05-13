@@ -888,7 +888,7 @@ function preload ()
 	
 	this.load.bitmapFont('mc_font', '../assets/minecraft_font.png', '../assets/minecraft_font.xml');
 	
-	this.load.tilemapTiledJSON('map', '../assets/tilemap_phaser.json');
+	this.load.tilemapTiledJSON('map', '../assets/tilemap_phaser.txt');
 	this.load.spritesheet('tiles', '../assets/generic-platformer-tiles.png', {frameWidth: 32, frameHeight: 32});
 }
 
