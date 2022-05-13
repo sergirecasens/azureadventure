@@ -2,6 +2,19 @@ let app = function(){
 	
 	let partides = JSON.parse(localStorage.getItem("llistat_partides"));
 	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "https://adventureefunc.azurewebsites.net/api/HttpTriggerRead?code=85iq00fUeLfdBXU_UH5vQmKAkOTqPx5CuO60cCZzJSwmAzFu1-n-6w==");
+
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.setRequestHeader("Content-Type", "application/json");
+
+	xhr.onload = () => console.log(xhr.responseText);
+
+	let data = "Hola que tal";
+
+	xhr.send(data);
+	
+	
 	function returnToMenu(){
 		window.location="../"
 	}
