@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="./style.css">
+	<title>Menú</title>
+</head>
+
+<body class="bg">
+	<b class="texttitol">The Adventurer's Adventure</b>
+	<button class="botocentrat" onClick="startGame()">Start Game</button>
+	<button class="botocentrat" onClick="load()">Load</button>
+	<button class="botocentrat" onClick="ranking()">Ranking</button>
+</body>
+
+<script>
+	function load(){
+		window.location="./html/load.html";
+	}
+
+	function ranking(){
+		window.location="./html/ranking.html";
+	}
+	
+	function startGame(){
+		let partida = {id:0, name:undefined, time:0};
+		let partides;
+		
+		partida.name = prompt("Enter your username", "");
+		
+		if(partida.name){
+			partides = localStorage.getItem("llistat_partides")
+		
+			if (!partides){
+				partides = [];
+			}
+			else{
+				partides = JSON.parse(partides);
+				if(partides.length > 0)
+					partida.id = partides[partides.length - 1].id + 1;
+			}
+		
+			partides.push(partida);
+			localStorage.setItem("llistat_partides", JSON.stringify(partides));
+			sessionStorage.setItem("id_partida", partida.id);
+			window.location = "./html/game.html";
+		}
+	}
+</script>
+</html>
