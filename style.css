@@ -85,7 +85,7 @@ label{
 }
 
 .bg{
-	background-image: url("/~u1967108/joc_phaser/assets/bg.jpg");
+	background-image: url("assets/bg.png");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
