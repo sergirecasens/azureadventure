@@ -10,8 +10,8 @@ let app = function(){
 
 	xhr.onload = () => console.log(JSON.parse(xhr.responseText));
 
-	let data = "sergi";
-
+	let data = sessionStorage.getItem("user", undefined);
+	
 	xhr.send(data);
 	
 	

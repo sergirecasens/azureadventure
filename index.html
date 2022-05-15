@@ -25,6 +25,24 @@
 </body>
 
 <script>
+	let partida = {id:0, name:undefined, time:0};
+	let partides;
+		
+	let user = prompt("Enter your username", "");
+	sessionStorage.setItem("user", user);
+	
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "https://adventureefunc.azurewebsites.net/api/HttpTriggerRead?code=85iq00fUeLfdBXU_UH5vQmKAkOTqPx5CuO60cCZzJSwmAzFu1-n-6w==");
+
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.setRequestHeader("Content-Type", "application/json");
+
+	xhr.onload = () => console.log(JSON.parse(xhr.responseText));
+
+	xhr.send(user);
+	
+
 	function load(){
 		window.location="./html/load.html";
 	}
@@ -34,13 +52,8 @@
 	}
 	
 	function startGame(){
-		let partida = {id:0, name:undefined, time:0};
-		let partides;
-		
-		partida.name = prompt("Enter your username", "");
-		
 		if(partida.name){
-			partides = localStorage.getItem("llistat_partides")
+			partides = localStorage.getItem("llistat_partides");
 		
 			if (!partides){
 				partides = [];
@@ -54,7 +67,7 @@
 			partides.push(partida);
 			localStorage.setItem("llistat_partides", JSON.stringify(partides));
 			sessionStorage.setItem("id_partida", partida.id);
-			window.location = "./html/game.html?user=" + partida.name;
+			window.location = "./html/game.html";
 		}
 	}
 </script>

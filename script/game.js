@@ -1,17 +1,11 @@
-let app = function(){
-	
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	const code = urlParams.get('user');
-	console.log(code);
-	
+let app = function(){	
 	let partides;
 	let id_partida;
 	let indx;
 	let start_time = Date.now();
 	
 	function returnToMenu(){
-		window.location="../index.html?user=";
+		window.location="../";
 	}
 	
 	id_partida = sessionStorage.getItem("id_partida", undefined);
