@@ -54,7 +54,7 @@
 			partides.push(partida);
 			localStorage.setItem("llistat_partides", JSON.stringify(partides));
 			sessionStorage.setItem("id_partida", partida.id);
-			window.location = "./html/game.html";
+			window.location = "./html/game.html?user=" + partida.name;
 		}
 	}
 </script>
