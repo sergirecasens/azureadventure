@@ -26,21 +26,11 @@
 
 <script>
 	let partida = {id:0, name:undefined, time:0};
-	let partides;
+	//let partides;
 		
 	let user = prompt("Enter your username", "");
 	sessionStorage.setItem("user", user);
-	
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", "https://adventureefunc.azurewebsites.net/api/HttpTriggerRead?code=85iq00fUeLfdBXU_UH5vQmKAkOTqPx5CuO60cCZzJSwmAzFu1-n-6w==");
-
-	xhr.setRequestHeader("Accept", "application/json");
-	xhr.setRequestHeader("Content-Type", "application/json");
-
-	xhr.onload = () => console.log(JSON.parse(xhr.responseText));
-
-	xhr.send(user);
+	partida.name = user;
 	
 
 	function load(){
@@ -53,7 +43,7 @@
 	
 	function startGame(){
 		if(partida.name){
-			partides = localStorage.getItem("llistat_partides");
+			/*partides = localStorage.getItem("llistat_partides");
 		
 			if (!partides){
 				partides = [];
@@ -65,9 +55,29 @@
 			}
 		
 			partides.push(partida);
-			localStorage.setItem("llistat_partides", JSON.stringify(partides));
-			sessionStorage.setItem("id_partida", partida.id);
-			window.location = "./html/game.html";
+			localStorage.setItem("llistat_partides", JSON.stringify(partides));*/
+
+			let xhr = new XMLHttpRequest();
+			xhr.open("POST", "https://adventureefunc.azurewebsites.net/api/HttpTriggerSet?code=3127ueiKO4AF1CyOqXYgrk9yWgv4LHDx9sIKp35zIUGpAzFulXepkg==");
+
+			xhr.setRequestHeader("Accept", "application/json");
+			xhr.setRequestHeader("Content-Type", "application/json");
+
+			xhr.onload = () => {
+				sessionStorage.setItem("id_partida", xhr.responseText);
+				window.location = "./html/game.html";
+			}
+
+			let data = {
+				user: user,
+				game_id: 0,
+				game_data: partida,
+				type: 0
+			};
+			
+			let jsonData = JSON.stringify(data);
+
+			xhr.send(jsonData);
 		}
 	}
 </script>
