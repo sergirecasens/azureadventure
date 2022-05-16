@@ -34,7 +34,7 @@ let app = function(){
 				indx = i;
 			}
 		}
-		
+		indx = id_partida - 1;
 		return new Vue({
 			el: '#app',
 			data: {
