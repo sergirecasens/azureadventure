@@ -62,12 +62,10 @@ let app = function(){
 				xhr.setRequestHeader("Content-Type", "application/json");
 			
 				xhr.onload = () => {
-					console.log(xhr.responseText);
+					console.log(JSON.parse(xhr.responseText));
 				}
 				
 				let data = {
-					user: user,
-					game_id: id_partida,
 					game_data: partides[indx],
 					type: 1
 				}

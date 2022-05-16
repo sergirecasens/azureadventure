@@ -47,12 +47,10 @@ let app = function(){
 				xhr.setRequestHeader("Content-Type", "application/json");
 	
 				xhr.onload = () => {
-					console.log(xhr.responseText);
+					console.log(JSON.parse(xhr.responseText));
 				}
 	
 				let data = {
-					user: user,
-					game_id: id * -1,
 					game_data: partida,
 					type: 2
 				};
@@ -70,12 +68,10 @@ let app = function(){
 				xhr.setRequestHeader("Content-Type", "application/json");
 	
 				xhr.onload = () => {
-					console.log(xhr.responseText);
+					console.log(JSON.parse(xhr.responseText));
 				}
 	
 				let data = {
-					user: user,
-					game_id: id * -1,
 					game_data: partida,
 					type: 3
 				};
