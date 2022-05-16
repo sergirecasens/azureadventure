@@ -1097,6 +1097,7 @@ function create ()
 	// CREATE NEW
 	else
 	{
+		console.log("entra");
 		// Player
 		adventurer = new Player(165, 322);
 		

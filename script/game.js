@@ -7,6 +7,58 @@ let app = function(){
 	function returnToMenu(){
 		window.location="../";
 	}
+
+	function totVue(){
+		return new Vue({
+			el: '#app',
+			data: {
+				nom_usuari: user,
+				id_partida: partides[indx].id
+			},
+			created: function(){
+				//startGame(partides[indx].info);
+				//startGame(undefined);
+			},
+			methods: {
+				save: function(){
+					partides[indx].time += Date.now() - start_time;
+					partides[indx].info = saveInfo();
+					console.log(partides[indx].info);
+	
+		// ------------------------------------- ACCÉS AL BLOB STORAGE PER DESAR LA PARTIDA -------------------------------------
+					//localStorage.setItem("llistat_partides", JSON.stringify(partides));
+					let xhr = new XMLHttpRequest();
+					xhr.open("POST", "https://adventureefunc.azurewebsites.net/api/HttpTriggerSet?code=3127ueiKO4AF1CyOqXYgrk9yWgv4LHDx9sIKp35zIUGpAzFulXepkg==");
+				
+					xhr.setRequestHeader("Accept", "application/json");
+					xhr.setRequestHeader("Content-Type", "application/json");
+				
+					xhr.onload = () => {
+						console.log(xhr.responseText);
+					}
+					console.log(partides[indx]);
+					let data = {
+						game_data: partides[indx],
+						type: 1
+					}
+	
+					let jsonData = JSON.stringify(data);
+	
+					xhr.send(jsonData);
+		// ------------------------------------------------------------------------------------------------------------------------------------------------
+	
+					//alert("Game saved");
+					//returnToMenu();
+				},
+				menu: function(){
+					if(confirm("Any unsaved progress will be lost. Quit to menu?"))
+					{
+						returnToMenu();
+					}
+				}
+			}
+		});
+	}
 	
 	id_partida = sessionStorage.getItem("id_partida", undefined);
 	
@@ -25,8 +77,8 @@ let app = function(){
 	xhr.setRequestHeader("Content-Type", "application/json");
 
 	xhr.onload = () => {
-		//partides = JSON.parse(xhr.responseText);
-		partides = xhr.responseText;
+		partides = JSON.parse(xhr.responseText);
+		//partides = xhr.responseText;
 		console.log(partides);
 
 		for(let i = 0; i < partides.length; i++){
@@ -35,56 +87,14 @@ let app = function(){
 			}
 		}
 		indx = id_partida - 1;
-		return new Vue({
-			el: '#app',
-			data: {
-				nom_usuari: user,
-				id_partida: partides[indx].id
-			},
-			created: function(){
-				startGame(partides[indx].info);
-			},
-			methods: {
-				save: function(){
-					partides[indx].time += Date.now() - start_time;
-					partides[indx].info = saveInfo();
-					console.log(partides[indx].info);
-	
-	// ------------------------------------- ACCÉS AL BLOB STORAGE PER DESAR LA PARTIDA -------------------------------------
-					//localStorage.setItem("llistat_partides", JSON.stringify(partides));
-					let xhr = new XMLHttpRequest();
-					xhr.open("POST", "https://adventureefunc.azurewebsites.net/api/HttpTriggerSet?code=3127ueiKO4AF1CyOqXYgrk9yWgv4LHDx9sIKp35zIUGpAzFulXepkg==");
-				
-					xhr.setRequestHeader("Accept", "application/json");
-					xhr.setRequestHeader("Content-Type", "application/json");
-				
-					xhr.onload = () => {
-						console.log(JSON.parse(xhr.responseText));
-					}
-					
-					let data = {
-						game_data: partides[indx],
-						type: 1
-					}
-	
-					let jsonData = JSON.stringify(data);
-	
-					xhr.send(jsonData);
-	// ------------------------------------------------------------------------------------------------------------------------------------------------
-	
-					alert("Game saved");
-					returnToMenu();
-				},
-				menu: function(){
-					if(confirm("Any unsaved progress will be lost. Quit to menu?"))
-					{
-						returnToMenu();
-					}
-				}
-			}
-		});
+		console.log(typeof(partides));
+		totVue();
+		startGame(partides[indx].info);
+		
 	}
 
 	xhr.send(user);
 // ------------------------------------------------------------------------------------------------------------------------------------------------
+	
+
 }();
