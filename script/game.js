@@ -25,7 +25,8 @@ let app = function(){
 	xhr.setRequestHeader("Content-Type", "application/json");
 
 	xhr.onload = () => {
-		partides = JSON.parse(xhr.responseText);
+		//partides = JSON.parse(xhr.responseText);
+		partides = xhr.responseText;
 		console.log(partides);
 	}
 
