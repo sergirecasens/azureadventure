@@ -11,7 +11,7 @@
 		<b class="textcentrat">BEST SCORES</b>
 		
 		<div class="textranking" v-for="item in items" :key="item.id">
-				<b class="textranking">{{item.name}}</b>
+				<b class="textranking">Game: {{item.id}}</b>
 				<p class="textranking">Score: {{item.info.score}}</p>
 				<p class="textranking">Time: {{100 - item.info.time}}</p>
 		</div>

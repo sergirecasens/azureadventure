@@ -12,11 +12,18 @@ let app = function(){
 	xhr.onload = () => {
 		partides = JSON.parse(xhr.responseText);
 		console.log(partides);
+		partidesAux = partides;
+		
+		for(var i = 0; i < partidesAux.length; i++){
+			if(partidesAux[i].info == undefined){
+				partidesAux[i].info = {score: 0, time: 100};
+			}
+		}
 
 		return new Vue({
 			el: '#app',
 			data: {
-				items: partides.sort((a, b) => (a.info.score < b.info.score) ? 1 : -1)
+				items: partidesAux.sort((a, b) => (a.info.score < b.info.score) ? 1 : -1)
 			},
 			methods: {
 				/*load: function(id){

@@ -35,6 +35,7 @@ let app = function(){
 				
 					xhr.onload = () => {
 						console.log(xhr.responseText);
+						returnToMenu();
 					}
 					console.log(partides[indx]);
 					let data = {
