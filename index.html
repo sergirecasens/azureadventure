@@ -16,9 +16,12 @@
 <script>
 	let partida = {id:1, name:undefined, time:0};
 	//let partides;
-		
-	let user = prompt("Enter your username", "");
-	sessionStorage.setItem("user", user);
+	let user = sessionStorage.getItem("user", undefined);
+	if (!user){
+		user = prompt("Enter your username", "");
+		sessionStorage.setItem("user", user);
+	}
+
 	partida.name = user;
 
 	function load(){
@@ -31,19 +34,6 @@
 	
 	function startGame(){
 		if(partida.name){
-			/*partides = localStorage.getItem("llistat_partides");
-		
-			if (!partides){
-				partides = [];
-			}
-			else{
-				partides = JSON.parse(partides);
-				if(partides.length > 0)
-					partida.id = partides[partides.length - 1].id + 1;
-			}
-		
-			partides.push(partida);
-			localStorage.setItem("llistat_partides", JSON.stringify(partides));*/
 
 			let xhr = new XMLHttpRequest();
 			xhr.open("POST", "https://adventureefunc.azurewebsites.net/api/HttpTriggerSet?code=3127ueiKO4AF1CyOqXYgrk9yWgv4LHDx9sIKp35zIUGpAzFulXepkg==");
